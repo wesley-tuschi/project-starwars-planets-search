@@ -13,14 +13,30 @@ function NumericFilter() {
     setNumericFilters([...numericFilters, { column, comparison, value }]);
   };
 
+  const getAvailableColumns = () => {
+    const allColumns = [
+      'population',
+      'orbital_period',
+      'diameter',
+      'rotation_period',
+      'surface_water',
+    ];
+
+    const usedColumns = numericFilters.map((filter) => filter.column);
+
+    return allColumns.filter((column) => !usedColumns.includes(column));
+  };
+
+  const availableColumns = getAvailableColumns();
+
   return (
     <div>
       <select data-testid="column-filter">
-        <option value="population">population</option>
-        <option value="orbital_period">orbital_period</option>
-        <option value="diameter">diameter</option>
-        <option value="rotation_period">rotation_period</option>
-        <option value="surface_water">surface_water</option>
+        {availableColumns.map((column) => (
+          <option key={ column } value={ column }>
+            {column}
+          </option>
+        ))}
       </select>
       <select data-testid="comparison-filter">
         <option value="maior que">maior que</option>
