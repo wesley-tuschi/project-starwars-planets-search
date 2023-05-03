@@ -4,6 +4,7 @@ import AppContext from './AppContext';
 
 function AppProvider({ children }) {
   const [planets, setPlanets] = useState([]);
+  const [filterText, setFilterText] = useState('');
 
   const URL = 'https://swapi.dev/api/planets';
 
@@ -21,8 +22,8 @@ function AppProvider({ children }) {
   }, []);
 
   const values = useMemo(() => ({
-    planets, setPlanets,
-  }), [planets, setPlanets]);
+    planets, setPlanets, filterText, setFilterText,
+  }), [planets, setPlanets, filterText, setFilterText]);
 
   return (
     <AppContext.Provider value={ values }>

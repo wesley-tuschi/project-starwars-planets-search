@@ -2,7 +2,10 @@ import { useContext } from 'react';
 import AppContext from '../contexts/AppContext';
 
 function Table() {
-  const { planets } = useContext(AppContext);
+  const { planets, filterText } = useContext(AppContext);
+  const filteredPlanets = planets.filter((planet) => (
+    planet.name.toLowerCase().includes(filterText.toLowerCase())
+  ));
 
   return (
     <table>
@@ -24,7 +27,7 @@ function Table() {
         </tr>
       </thead>
       <tbody>
-        {planets.map((e) => (
+        {filteredPlanets.map((e) => (
           <tr key={ e.url }>
             <td>{e.name}</td>
             <td>{e.climate}</td>
