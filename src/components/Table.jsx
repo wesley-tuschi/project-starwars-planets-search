@@ -2,9 +2,26 @@ import { useContext } from 'react';
 import AppContext from '../contexts/AppContext';
 
 function Table() {
-  const { planets, filterText } = useContext(AppContext);
+  const { planets, filterText, numericFilters } = useContext(AppContext);
+
+  const applyNumericFilters = (planet) => numericFilters.every((filter) => {
+    const planetValue = Number(planet[filter.column]);
+
+    switch (filter.comparison) {
+    case 'maior que':
+      return planetValue > filter.value;
+    case 'menor':
+      return planetValue < filter.value;
+    case 'igual':
+      return planetValue === filter.value;
+    default:
+      return false;
+    }
+  });
+
   const filteredPlanets = planets.filter((planet) => (
     planet.name.toLowerCase().includes(filterText.toLowerCase())
+    && applyNumericFilters(planet)
   ));
 
   return (
