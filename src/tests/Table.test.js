@@ -82,4 +82,19 @@ describe('Table component', () => {
 
     expect(queryByText('Tatooine')).toBeNull();
   });
+
+  test('filters planet data by multiple numeric filters', () => {
+    mockContext.numericFilters = [
+      { column: 'population', comparison: 'maior que', value: 100000 },
+      { column: 'diameter', comparison: 'menor', value: 11000 },
+    ];
+
+    const { getByText } = render(
+      <AppContext.Provider value={ mockContext }>
+        <Table />
+      </AppContext.Provider>,
+    );
+
+    expect(getByText('Tatooine')).toBeInTheDocument();
+  });
 });
