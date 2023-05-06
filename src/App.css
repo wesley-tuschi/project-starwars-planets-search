@@ -1,12 +1,10 @@
+body {
+  background-color: #121212;
+  color: #f8f9fa;
+  font-family: Droid Sans, sans-serif;
+  font-size: 14px;
+}
 
-  body {
-    background-color: #121212; 
-    color: #f8f9fa; 
-        font-family: 'Droid Sans', sans-serif;
-        font-size: 14px;
-  }
-
-  .table-with-wrap td {
-    white-space: pre-wrap;
-  }
-  
+.table-with-wrap td {
+  white-space: pre-wrap;
+}
